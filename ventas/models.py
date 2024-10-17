@@ -1,14 +1,17 @@
 from django.db import models
 
+from productos.models import Producto
+
+
 # Create your models here.
-# class Carrito(models.Model):
-    # producto = models.ManyToManyField(Producto, through='CarritoProducto', related_name='carrito')
+class Carrito(models.Model):
+    producto = models.ManyToManyField(Producto, through='CarritoProducto', related_name='carrito')
     
 
 
 class Item(models.Model):
-    # producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    # carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
     cantidad = models.DecimalField(max_digits=4, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
 
